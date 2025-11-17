@@ -37,7 +37,7 @@ namespace RangordnaCVs
             }
             else
             {
-                PythonexePath = SelectFile(PythonexePath, "Välj exe-fil för rangordning");
+                PythonexePath = SelectFile(PythonexePath, "Välj exe-fil för rangordning (python made!)");
             }
 
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
