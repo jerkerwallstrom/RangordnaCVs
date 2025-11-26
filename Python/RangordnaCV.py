@@ -6,6 +6,7 @@ import pdfplumber
 from RankCvsSemantic import rank_cvs_semantic
 from RankCvsSemanticWeighted import rank_cvs_semantic_weighted
 import sys
+from Translate import translate_text
 
 doc = Document()
 
@@ -95,20 +96,23 @@ def read_textfile(filepath: str) -> str:
 if __name__ == "__main__":
 
 
-    if len(sys.argv) < 4:
+    if len(sys.argv) < 5:
         szTmp = "Usage: python RangordnaCV.py <cv_folder> <job_description> <keywords_file>"
         doc.add_paragraph(szTmp)
         cv_folder = r"C:\Dev\TestData\CV"
-        job_description = r"C:\Dev\TestData\jobdesc.txt"
+        job_description = r"C:\Dev\TestData\jobdesc_en.txt"
         keywords_file = r"C:\Dev\TestData\weightedkeywords.txt"
+        working_lnguage = "sv"
         log_file = "RangordnaCV_log.docx"
     else:
         cv_folder = sys.argv[1]
         job_description = sys.argv[2]
         keywords_file = sys.argv[3]
+        working_lnguage = sys.argv[4]
 
-    if len(sys.argv) > 4:
-        log_file = sys.argv[4]
+    if len(sys.argv) > 5:
+        log_file = sys.argv[5]
+
 
     doc.add_paragraph(f"CV-mapp: {cv_folder}")
     doc.add_paragraph(f"Jobbeskrivning: {job_description}")
@@ -117,6 +121,13 @@ if __name__ == "__main__":
     #job_desc = """Vi söker en senior Python-utvecklare med erfarenhet av molnlösningar och AI."""
     #job_desc = """Vi söker en mekanist med erfarenhet av special stål och plast."""
     job_desc = read_textfile(job_description) #"C:\Dev\TestData\jobdesc.txt")  # Läs jobbeskrivningen från en textfil
+    source_lang='auto'
+    if working_lnguage == "en":
+        target_lang='en'
+    elif working_lnguage == "sv":
+        target_lang='sv'
+
+    job_desc = translate_text(job_desc, source_lang, target_lang)
     if not job_desc:
         szTmp = "Ingen jobbeskrivning angiven. Avslutar."
         doc.add_paragraph(szTmp)

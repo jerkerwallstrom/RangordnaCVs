@@ -28,185 +28,246 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblKeyWord = new System.Windows.Forms.Label();
-            this.btnKeyWord = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.lblKeywordFile = new System.Windows.Forms.Label();
-            this.lblAssignmentDesc = new System.Windows.Forms.Label();
-            this.btnAssignmentDesc = new System.Windows.Forms.Button();
-            this.lblAssigmentFile = new System.Windows.Forms.Label();
-            this.lblSelectedCVfolder = new System.Windows.Forms.Label();
-            this.btnCVFolder = new System.Windows.Forms.Button();
-            this.lblCandidateFolder = new System.Windows.Forms.Label();
-            this.btnStartEvaluation = new System.Windows.Forms.Button();
-            this.textBoxOutput = new System.Windows.Forms.TextBox();
-            this.lblPythonFile = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.btnClearOutput = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            lblKeyWord = new Label();
+            btnKeyWord = new Button();
+            openFileDialog1 = new OpenFileDialog();
+            lblKeywordFile = new Label();
+            lblJobDescFile = new Label();
+            btnAssignmentDesc = new Button();
+            lblAssigment = new Label();
+            lblSelectedCVfolder = new Label();
+            btnCVFolder = new Button();
+            lblCandidateFolder = new Label();
+            btnStartEvaluation = new Button();
+            textBoxOutput = new TextBox();
+            lblPythonFile = new Label();
+            progressBar1 = new ProgressBar();
+            btnClearOutput = new Button();
+            cbLanuage = new ComboBox();
+            lblJobDescLang = new Label();
+            btnSetKeyword = new Button();
+            btnEditDesc = new Button();
+            SuspendLayout();
             // 
             // lblKeyWord
             // 
-            this.lblKeyWord.AutoSize = true;
-            this.lblKeyWord.Location = new System.Drawing.Point(18, 26);
-            this.lblKeyWord.Name = "lblKeyWord";
-            this.lblKeyWord.Size = new System.Drawing.Size(88, 13);
-            this.lblKeyWord.TabIndex = 0;
-            this.lblKeyWord.Text = "Välj nyckelordsfil:";
+            lblKeyWord.AutoSize = true;
+            lblKeyWord.Location = new Point(21, 30);
+            lblKeyWord.Margin = new Padding(4, 0, 4, 0);
+            lblKeyWord.Name = "lblKeyWord";
+            lblKeyWord.Size = new Size(98, 15);
+            lblKeyWord.TabIndex = 0;
+            lblKeyWord.Text = "Välj nyckelordsfil:";
             // 
             // btnKeyWord
             // 
-            this.btnKeyWord.Location = new System.Drawing.Point(112, 21);
-            this.btnKeyWord.Name = "btnKeyWord";
-            this.btnKeyWord.Size = new System.Drawing.Size(75, 23);
-            this.btnKeyWord.TabIndex = 1;
-            this.btnKeyWord.Text = "Nyckelord";
-            this.btnKeyWord.UseVisualStyleBackColor = true;
-            this.btnKeyWord.Click += new System.EventHandler(this.btnKeyWord_Click);
+            btnKeyWord.Location = new Point(131, 24);
+            btnKeyWord.Margin = new Padding(4, 3, 4, 3);
+            btnKeyWord.Name = "btnKeyWord";
+            btnKeyWord.Size = new Size(88, 27);
+            btnKeyWord.TabIndex = 1;
+            btnKeyWord.Text = "Nyckelord";
+            btnKeyWord.UseVisualStyleBackColor = true;
+            btnKeyWord.Click += btnKeyWord_Click;
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            openFileDialog1.FileName = "openFileDialog1";
             // 
             // lblKeywordFile
             // 
-            this.lblKeywordFile.AutoSize = true;
-            this.lblKeywordFile.Location = new System.Drawing.Point(18, 59);
-            this.lblKeywordFile.Name = "lblKeywordFile";
-            this.lblKeywordFile.Size = new System.Drawing.Size(198, 13);
-            this.lblKeywordFile.TabIndex = 2;
-            this.lblKeywordFile.Text = "C:\\Dev\\TestData\\weightedkeywords.txt";
+            lblKeywordFile.AutoSize = true;
+            lblKeywordFile.Location = new Point(21, 54);
+            lblKeywordFile.Margin = new Padding(4, 0, 4, 0);
+            lblKeywordFile.Name = "lblKeywordFile";
+            lblKeywordFile.Size = new Size(213, 15);
+            lblKeywordFile.TabIndex = 2;
+            lblKeywordFile.Text = "C:\\Dev\\TestData\\weightedkeywords.txt";
             // 
-            // lblAssignmentDesc
+            // lblJobDescFile
             // 
-            this.lblAssignmentDesc.AutoSize = true;
-            this.lblAssignmentDesc.Location = new System.Drawing.Point(18, 129);
-            this.lblAssignmentDesc.Name = "lblAssignmentDesc";
-            this.lblAssignmentDesc.Size = new System.Drawing.Size(147, 13);
-            this.lblAssignmentDesc.TabIndex = 5;
-            this.lblAssignmentDesc.Text = "C:\\Dev\\TestData\\jobdesc.txt";
+            lblJobDescFile.AutoSize = true;
+            lblJobDescFile.Location = new Point(21, 157);
+            lblJobDescFile.Margin = new Padding(4, 0, 4, 0);
+            lblJobDescFile.Name = "lblJobDescFile";
+            lblJobDescFile.Size = new Size(155, 15);
+            lblJobDescFile.TabIndex = 5;
+            lblJobDescFile.Text = "C:\\Dev\\TestData\\jobdesc.txt";
             // 
             // btnAssignmentDesc
             // 
-            this.btnAssignmentDesc.Location = new System.Drawing.Point(152, 91);
-            this.btnAssignmentDesc.Name = "btnAssignmentDesc";
-            this.btnAssignmentDesc.Size = new System.Drawing.Size(122, 23);
-            this.btnAssignmentDesc.TabIndex = 4;
-            this.btnAssignmentDesc.Text = "Uppdragsbeskrivning";
-            this.btnAssignmentDesc.UseVisualStyleBackColor = true;
-            this.btnAssignmentDesc.Click += new System.EventHandler(this.btnAssignmentDesc_Click);
+            btnAssignmentDesc.Location = new Point(177, 126);
+            btnAssignmentDesc.Margin = new Padding(4, 3, 4, 3);
+            btnAssignmentDesc.Name = "btnAssignmentDesc";
+            btnAssignmentDesc.Size = new Size(142, 27);
+            btnAssignmentDesc.TabIndex = 4;
+            btnAssignmentDesc.Text = "Uppdragsbeskrivning";
+            btnAssignmentDesc.UseVisualStyleBackColor = true;
+            btnAssignmentDesc.Click += btnAssignmentDesc_Click;
             // 
-            // lblAssigmentFile
+            // lblAssigment
             // 
-            this.lblAssigmentFile.AutoSize = true;
-            this.lblAssigmentFile.Location = new System.Drawing.Point(18, 96);
-            this.lblAssigmentFile.Name = "lblAssigmentFile";
-            this.lblAssigmentFile.Size = new System.Drawing.Size(128, 13);
-            this.lblAssigmentFile.TabIndex = 3;
-            this.lblAssigmentFile.Text = "Välj uppdragsbeskrivning:";
+            lblAssigment.AutoSize = true;
+            lblAssigment.Location = new Point(21, 132);
+            lblAssigment.Margin = new Padding(4, 0, 4, 0);
+            lblAssigment.Name = "lblAssigment";
+            lblAssigment.Size = new Size(142, 15);
+            lblAssigment.TabIndex = 3;
+            lblAssigment.Text = "Välj uppdragsbeskrivning:";
             // 
             // lblSelectedCVfolder
             // 
-            this.lblSelectedCVfolder.AutoSize = true;
-            this.lblSelectedCVfolder.Location = new System.Drawing.Point(18, 197);
-            this.lblSelectedCVfolder.Name = "lblSelectedCVfolder";
-            this.lblSelectedCVfolder.Size = new System.Drawing.Size(110, 13);
-            this.lblSelectedCVfolder.TabIndex = 8;
-            this.lblSelectedCVfolder.Text = "C:\\Dev\\TestData\\CV";
+            lblSelectedCVfolder.AutoSize = true;
+            lblSelectedCVfolder.Location = new Point(21, 286);
+            lblSelectedCVfolder.Margin = new Padding(4, 0, 4, 0);
+            lblSelectedCVfolder.Name = "lblSelectedCVfolder";
+            lblSelectedCVfolder.Size = new Size(112, 15);
+            lblSelectedCVfolder.TabIndex = 8;
+            lblSelectedCVfolder.Text = "C:\\Dev\\TestData\\CV";
             // 
             // btnCVFolder
             // 
-            this.btnCVFolder.Location = new System.Drawing.Point(152, 159);
-            this.btnCVFolder.Name = "btnCVFolder";
-            this.btnCVFolder.Size = new System.Drawing.Size(122, 23);
-            this.btnCVFolder.TabIndex = 7;
-            this.btnCVFolder.Text = "CV katalog";
-            this.btnCVFolder.UseVisualStyleBackColor = true;
-            this.btnCVFolder.Click += new System.EventHandler(this.btnCVFolder_Click);
+            btnCVFolder.Location = new Point(177, 256);
+            btnCVFolder.Margin = new Padding(4, 3, 4, 3);
+            btnCVFolder.Name = "btnCVFolder";
+            btnCVFolder.Size = new Size(142, 27);
+            btnCVFolder.TabIndex = 7;
+            btnCVFolder.Text = "CV katalog";
+            btnCVFolder.UseVisualStyleBackColor = true;
+            btnCVFolder.Click += btnCVFolder_Click;
             // 
             // lblCandidateFolder
             // 
-            this.lblCandidateFolder.AutoSize = true;
-            this.lblCandidateFolder.Location = new System.Drawing.Point(18, 164);
-            this.lblCandidateFolder.Name = "lblCandidateFolder";
-            this.lblCandidateFolder.Size = new System.Drawing.Size(82, 13);
-            this.lblCandidateFolder.TabIndex = 6;
-            this.lblCandidateFolder.Text = "Välj CV katalog:";
+            lblCandidateFolder.AutoSize = true;
+            lblCandidateFolder.Location = new Point(21, 262);
+            lblCandidateFolder.Margin = new Padding(4, 0, 4, 0);
+            lblCandidateFolder.Name = "lblCandidateFolder";
+            lblCandidateFolder.Size = new Size(88, 15);
+            lblCandidateFolder.TabIndex = 6;
+            lblCandidateFolder.Text = "Välj CV katalog:";
             // 
             // btnStartEvaluation
             // 
-            this.btnStartEvaluation.Location = new System.Drawing.Point(21, 240);
-            this.btnStartEvaluation.Name = "btnStartEvaluation";
-            this.btnStartEvaluation.Size = new System.Drawing.Size(166, 23);
-            this.btnStartEvaluation.TabIndex = 9;
-            this.btnStartEvaluation.Text = "Starta utvärdering";
-            this.btnStartEvaluation.UseVisualStyleBackColor = true;
-            this.btnStartEvaluation.Click += new System.EventHandler(this.btnStartEvaluation_Click);
+            btnStartEvaluation.Location = new Point(21, 365);
+            btnStartEvaluation.Margin = new Padding(4, 3, 4, 3);
+            btnStartEvaluation.Name = "btnStartEvaluation";
+            btnStartEvaluation.Size = new Size(194, 27);
+            btnStartEvaluation.TabIndex = 9;
+            btnStartEvaluation.Text = "Starta utvärdering";
+            btnStartEvaluation.UseVisualStyleBackColor = true;
+            btnStartEvaluation.Click += btnStartEvaluation_Click;
             // 
             // textBoxOutput
             // 
-            this.textBoxOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxOutput.Location = new System.Drawing.Point(335, 12);
-            this.textBoxOutput.Multiline = true;
-            this.textBoxOutput.Name = "textBoxOutput";
-            this.textBoxOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxOutput.Size = new System.Drawing.Size(430, 416);
-            this.textBoxOutput.TabIndex = 10;
-            this.textBoxOutput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            textBoxOutput.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxOutput.Location = new Point(391, 14);
+            textBoxOutput.Margin = new Padding(4, 3, 4, 3);
+            textBoxOutput.Multiline = true;
+            textBoxOutput.Name = "textBoxOutput";
+            textBoxOutput.ScrollBars = ScrollBars.Both;
+            textBoxOutput.Size = new Size(501, 522);
+            textBoxOutput.TabIndex = 10;
+            textBoxOutput.TextAlign = HorizontalAlignment.Right;
             // 
             // lblPythonFile
             // 
-            this.lblPythonFile.AutoSize = true;
-            this.lblPythonFile.Location = new System.Drawing.Point(21, 409);
-            this.lblPythonFile.Name = "lblPythonFile";
-            this.lblPythonFile.Size = new System.Drawing.Size(53, 13);
-            this.lblPythonFile.TabIndex = 11;
-            this.lblPythonFile.Text = "Pythonfile";
+            lblPythonFile.AutoSize = true;
+            lblPythonFile.Location = new Point(21, 521);
+            lblPythonFile.Margin = new Padding(4, 0, 4, 0);
+            lblPythonFile.Name = "lblPythonFile";
+            lblPythonFile.Size = new Size(61, 15);
+            lblPythonFile.TabIndex = 11;
+            lblPythonFile.Text = "Pythonfile";
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(24, 283);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(163, 23);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar1.TabIndex = 12;
-            this.progressBar1.Visible = false;
+            progressBar1.Location = new Point(21, 415);
+            progressBar1.Margin = new Padding(4, 3, 4, 3);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(190, 27);
+            progressBar1.Style = ProgressBarStyle.Marquee;
+            progressBar1.TabIndex = 12;
+            progressBar1.Visible = false;
             // 
             // btnClearOutput
             // 
-            this.btnClearOutput.Location = new System.Drawing.Point(21, 325);
-            this.btnClearOutput.Name = "btnClearOutput";
-            this.btnClearOutput.Size = new System.Drawing.Size(85, 23);
-            this.btnClearOutput.TabIndex = 13;
-            this.btnClearOutput.Text = "Rensa resultat";
-            this.btnClearOutput.UseVisualStyleBackColor = true;
-            this.btnClearOutput.Click += new System.EventHandler(this.btnClearOutput_Click);
+            btnClearOutput.Location = new Point(21, 460);
+            btnClearOutput.Margin = new Padding(4, 3, 4, 3);
+            btnClearOutput.Name = "btnClearOutput";
+            btnClearOutput.Size = new Size(99, 27);
+            btnClearOutput.TabIndex = 13;
+            btnClearOutput.Text = "Rensa resultat";
+            btnClearOutput.UseVisualStyleBackColor = true;
+            btnClearOutput.Click += btnClearOutput_Click;
+            // 
+            // cbLanuage
+            // 
+            cbLanuage.FormattingEnabled = true;
+            cbLanuage.Items.AddRange(new object[] { "sv", "en" });
+            cbLanuage.Location = new Point(177, 311);
+            cbLanuage.Name = "cbLanuage";
+            cbLanuage.Size = new Size(121, 23);
+            cbLanuage.TabIndex = 14;
+            // 
+            // lblJobDescLang
+            // 
+            lblJobDescLang.AutoSize = true;
+            lblJobDescLang.Location = new Point(21, 314);
+            lblJobDescLang.Name = "lblJobDescLang";
+            lblJobDescLang.Size = new Size(54, 15);
+            lblJobDescLang.TabIndex = 15;
+            lblJobDescLang.Text = "CV Språk";
+            // 
+            // btnSetKeyword
+            // 
+            btnSetKeyword.Location = new Point(21, 83);
+            btnSetKeyword.Name = "btnSetKeyword";
+            btnSetKeyword.Size = new Size(112, 23);
+            btnSetKeyword.TabIndex = 16;
+            btnSetKeyword.Text = "Sätt nyckelord";
+            btnSetKeyword.UseVisualStyleBackColor = true;
+            btnSetKeyword.Click += btnSetKeyword_Click;
+            // 
+            // btnEditDesc
+            // 
+            btnEditDesc.Location = new Point(21, 189);
+            btnEditDesc.Name = "btnEditDesc";
+            btnEditDesc.Size = new Size(112, 23);
+            btnEditDesc.TabIndex = 17;
+            btnEditDesc.Text = "Editera uppdrag";
+            btnEditDesc.UseVisualStyleBackColor = true;
+            btnEditDesc.Click += btnEditDesc_Click;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnClearOutput);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.lblPythonFile);
-            this.Controls.Add(this.textBoxOutput);
-            this.Controls.Add(this.btnStartEvaluation);
-            this.Controls.Add(this.lblSelectedCVfolder);
-            this.Controls.Add(this.btnCVFolder);
-            this.Controls.Add(this.lblCandidateFolder);
-            this.Controls.Add(this.lblAssignmentDesc);
-            this.Controls.Add(this.btnAssignmentDesc);
-            this.Controls.Add(this.lblAssigmentFile);
-            this.Controls.Add(this.lblKeywordFile);
-            this.Controls.Add(this.btnKeyWord);
-            this.Controls.Add(this.lblKeyWord);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(933, 562);
+            Controls.Add(btnEditDesc);
+            Controls.Add(btnSetKeyword);
+            Controls.Add(lblJobDescLang);
+            Controls.Add(cbLanuage);
+            Controls.Add(btnClearOutput);
+            Controls.Add(progressBar1);
+            Controls.Add(lblPythonFile);
+            Controls.Add(textBoxOutput);
+            Controls.Add(btnStartEvaluation);
+            Controls.Add(lblSelectedCVfolder);
+            Controls.Add(btnCVFolder);
+            Controls.Add(lblCandidateFolder);
+            Controls.Add(lblJobDescFile);
+            Controls.Add(btnAssignmentDesc);
+            Controls.Add(lblAssigment);
+            Controls.Add(lblKeywordFile);
+            Controls.Add(btnKeyWord);
+            Controls.Add(lblKeyWord);
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "Form1";
+            Text = "Form1";
+            FormClosing += Form1_FormClosing;
+            Leave += Form1_Leave;
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -216,9 +277,9 @@
         private System.Windows.Forms.Button btnKeyWord;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label lblKeywordFile;
-        private System.Windows.Forms.Label lblAssignmentDesc;
+        private System.Windows.Forms.Label lblJobDescFile;
         private System.Windows.Forms.Button btnAssignmentDesc;
-        private System.Windows.Forms.Label lblAssigmentFile;
+        private System.Windows.Forms.Label lblAssigment;
         private System.Windows.Forms.Label lblSelectedCVfolder;
         private System.Windows.Forms.Button btnCVFolder;
         private System.Windows.Forms.Label lblCandidateFolder;
@@ -227,6 +288,10 @@
         private System.Windows.Forms.Label lblPythonFile;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnClearOutput;
+        private ComboBox cbLanuage;
+        private Label lblJobDescLang;
+        private Button btnSetKeyword;
+        private Button btnEditDesc;
     }
 }
 

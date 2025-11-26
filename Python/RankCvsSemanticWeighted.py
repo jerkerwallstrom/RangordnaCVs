@@ -2,6 +2,7 @@ import os
 from docx import Document
 import pdfplumber
 from sentence_transformers import SentenceTransformer, util
+from Translate import translate_text
 
 # ---- Läs CV-text ----
 def read_pdf(file_path):
@@ -51,6 +52,11 @@ def rank_cvs_semantic_weighted(folder_path, job_description, weighted_keywords, 
     scores = {}
     for filename, text in cv_texts.items():
         if text.strip():
+            #if working_lnguage == "en":
+            #    target_lang = 'en'
+            #else:
+            #    target_lang = 'sv'
+            #text = translate_text(text, source_lang='auto', target_lang=target_lang)
             cv_embedding = model.encode(text, convert_to_tensor=True)
             similarity = util.cos_sim(job_embedding, cv_embedding).item()
             kw_score = keyword_score(text, weighted_keywords)

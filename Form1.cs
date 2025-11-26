@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RangordnaCVs.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,15 +13,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using System.Text.Json;
 
 namespace RangordnaCVs
 {
     public partial class Form1 : Form
     {
         private string keywordFile = "C:\\Dev\\TestData\\weightedkeywords.txt";
-        private string jobdescFile = "C:\\Dev\\TestData\\jobdesc.txt";
+        private string jobdescFile = ""; //" C:\\Dev\\TestData\\jobdesc.txt";
         private string cvFolder = "C:\\Dev\\TestData\\CV";
-        private string PythonexePath = @"C:\Dev\Python\RangordnaCV\dist\RangordnaCV.exe";
+        private string PythonexePath = @"C:\Dev\VisualStudio\RangordnaCVs\Python\dist\RangordnaCV.exe";
+        private string language = "sv";
         private string deflogFile = "RangordnaCV_log.docx";
         private string logFile = "";
 
@@ -28,34 +31,78 @@ namespace RangordnaCVs
         {
             InitializeComponent();
             string exePath = AppContext.BaseDirectory;
-            lblPythonFile.Text = exePath;
-            string pyFileName = Path.GetFileName(PythonexePath);
-            string tmpPython = exePath + pyFileName;
-            if (File.Exists(tmpPython))
-            {
-                PythonexePath = tmpPython;
-            }
-            else
-            {
-                PythonexePath = SelectFile(PythonexePath, "Välj exe-fil för rangordning (python made!)");
-            }
 
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             deflogFile = Path.Combine(desktopPath, deflogFile);
             logFile = FixLogFile(deflogFile);
-            lblPythonFile.Text = PythonexePath;
+            LoadSettings();
             InitDefaultPath();
+            cbLanuage.SelectedIndex = 0;
+
+            if (!File.Exists(PythonexePath))
+            {
+                string pyFileName = Path.GetFileName(PythonexePath);
+                string tmpPython = exePath + pyFileName;
+                if (File.Exists(tmpPython))
+                {
+                    PythonexePath = tmpPython;
+                }
+                else
+                {
+                    PythonexePath = SelectFile(PythonexePath, "Välj exe-fil för rangordning (python made!)");
+                }
+            }
+            lblPythonFile.Text = PythonexePath;
+        }
+
+        private void LoadSettings()
+        {
+            string JsonString = Properties.Settings.Default.MyString;
+            if (!String.IsNullOrEmpty(JsonString))
+            {
+                var loaded = JsonSerializer.Deserialize<Dictionary<string, string>>(JsonString);
+                if (loaded.TryGetValue("pythonFile", out string tmpPython))
+                    PythonexePath = tmpPython;
+                if (loaded.TryGetValue("cvPath", out string tmpCVPath))
+                    cvFolder = tmpCVPath;
+                if (loaded.TryGetValue("jobDesc", out string tmpJobDesc))
+                    jobdescFile = tmpJobDesc;
+                if (loaded.TryGetValue("keyWord", out string tmpKeyword))
+                    keywordFile = tmpKeyword;
+            }
+
+        }
+
+        private void SaveSettings()
+        {
+            var data = new { pythonFile = PythonexePath, cvPath = cvFolder, jobDesc = jobdescFile, keyWord = keywordFile };
+            string tmp = JsonSerializer.Serialize(data);
+            Properties.Settings.Default.MyString = tmp;
+            Properties.Settings.Default.Save();
+            //keywordFile = Properties.Settings.Default.keywordFile;
+            //jobdescFile = Properties.Settings.Default.jobdescFile;
+            //cvFolder = Properties.Settings.Default.cvFolder;
+            //PythonexePath = Properties.Settings.Default.PythonexePath;
         }
 
         private void InitDefaultPath()
         {
             string exePath = AppContext.BaseDirectory;
-            keywordFile = Path.Combine(exePath, "NyckelOrd.txt");
-            jobdescFile = Path.Combine(exePath, "Arbetsbeskrivning.txt");
-            cvFolder = exePath + "CV";
+            if (!FileExists(keywordFile))
+            {
+                keywordFile = Path.Combine(exePath, "NyckelOrd.txt");
+            }
+            if (!FileExists(jobdescFile))
+            {
+                jobdescFile = Path.Combine(exePath, "Arbetsbeskrivning.txt");
+            }
+            if (!Path.Exists(cvFolder))
+            {
+                cvFolder = exePath + "CV";
+            }
             lblSelectedCVfolder.Text = cvFolder;
             lblKeywordFile.Text = keywordFile;
-            lblAssignmentDesc.Text = jobdescFile;
+            lblJobDescFile.Text = jobdescFile;
         }
 
         private string FixLogFile(string aLogFile)
@@ -87,7 +134,12 @@ namespace RangordnaCVs
         private string SelectFile(string defFile, string header)
         {
             openFileDialog1.Title = header;
-            openFileDialog1.DefaultExt = ".txt";
+            string defExt = Path.GetExtension(defFile);
+            openFileDialog1.InitialDirectory = Path.GetDirectoryName(defFile);
+            if (String.IsNullOrEmpty(defExt))
+            {
+                openFileDialog1.DefaultExt = ".txt";
+            }
             openFileDialog1.FileName = defFile;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -99,7 +151,7 @@ namespace RangordnaCVs
         private void btnAssignmentDesc_Click(object sender, EventArgs e)
         {
             jobdescFile = SelectFile(jobdescFile, "Välj fil för arbetsbeskrivning");
-            lblAssignmentDesc.Text = jobdescFile;
+            lblJobDescFile.Text = jobdescFile;
         }
 
         private void btnCVFolder_Click(object sender, EventArgs e)
@@ -137,6 +189,12 @@ namespace RangordnaCVs
         }
         private async void btnStartEvaluation_Click(object sender, EventArgs e)
         {
+            language = "sv";
+            if (cbLanuage.SelectedIndex >= 0)
+            {
+                language = cbLanuage.Text;
+            }
+
             logFile = FixLogFile(deflogFile);
             if (!ValidateFiles())
             {
@@ -167,7 +225,7 @@ namespace RangordnaCVs
             ProcessStartInfo psi = new ProcessStartInfo
             {
                 FileName = PythonexePath,
-                Arguments = $"\"{cvFolder}\" \"{jobdescFile}\" \"{keywordFile}\" \"{logFile}\"",
+                Arguments = $"\"{cvFolder}\" \"{jobdescFile}\" \"{keywordFile}\" \"{language}\" \"{logFile}\"",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -228,6 +286,39 @@ namespace RangordnaCVs
         private void btnClearOutput_Click(object sender, EventArgs e)
         {
             textBoxOutput.Clear();
+        }
+
+        private void btnEditDesc_Click(object sender, EventArgs e)
+        {
+            EditDescForm editDescForm = new EditDescForm();
+            editDescForm.SetDescFile(jobdescFile);
+            if (editDescForm.ShowDialog() == DialogResult.OK)
+            {
+                jobdescFile = editDescForm.GetDescFile();
+                lblJobDescFile.Text = jobdescFile;
+            }
+        }
+
+        private void btnSetKeyword_Click(object sender, EventArgs e)
+        {
+            EditDescForm editDescForm = new EditDescForm();
+            editDescForm.SetDescFile(keywordFile);
+            if (editDescForm.ShowDialog() == DialogResult.OK)
+            {
+                keywordFile = editDescForm.GetDescFile();
+                lblKeywordFile.Text = keywordFile;
+            }
+
+        }
+
+        private void Form1_Leave(object sender, EventArgs e)
+        {
+            SaveSettings();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveSettings();
         }
     }
 }
