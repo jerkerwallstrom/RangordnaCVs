@@ -86,3 +86,5 @@ Python/build/RangordnaCV/warn-RangordnaCV.txt
 Python/build/RangordnaCV/xref-RangordnaCV.html
 Python/dist/RangordnaCV.exe
 Python/RangordnaCV_log.docx
+obj/Debug/net10.0-windows/RangordnaCVs.Dialogs.EditDescForm.resources
+Python/RangordnaCV.spec
