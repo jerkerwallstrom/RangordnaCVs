@@ -100,9 +100,9 @@ if __name__ == "__main__":
         szTmp = "Usage: python RangordnaCV.py <cv_folder> <job_description> <keywords_file>"
         doc.add_paragraph(szTmp)
         cv_folder = r"C:\Dev\TestData\CV"
-        job_description = r"C:\Dev\TestData\jobdesc_en.txt"
+        job_description = r"C:\Dev\TestData\jobdesc.txt"
         keywords_file = r"C:\Dev\TestData\weightedkeywords.txt"
-        working_lnguage = "sv"
+        working_lnguage = "no"
         log_file = "RangordnaCV_log.docx"
     else:
         cv_folder = sys.argv[1]
@@ -121,13 +121,18 @@ if __name__ == "__main__":
     #job_desc = """Vi söker en senior Python-utvecklare med erfarenhet av molnlösningar och AI."""
     #job_desc = """Vi söker en mekanist med erfarenhet av special stål och plast."""
     job_desc = read_textfile(job_description) #"C:\Dev\TestData\jobdesc.txt")  # Läs jobbeskrivningen från en textfil
+
+    translateDoc = working_lnguage != "no"
+
     source_lang='auto'
+    target_lang='sv' #default value
     if working_lnguage == "en":
         target_lang='en'
     elif working_lnguage == "sv":
         target_lang='sv'
 
-    job_desc = translate_text(job_desc, source_lang, target_lang)
+    if translateDoc:
+        job_desc = translate_text(job_desc, source_lang, target_lang)
     if not job_desc:
         szTmp = "Ingen jobbeskrivning angiven. Avslutar."
         doc.add_paragraph(szTmp)
@@ -140,7 +145,7 @@ if __name__ == "__main__":
         myWeightedKeywords=read_weighted_keywords(keywords_file) #"C:\Dev\TestData\weightedkeywords.txt")
         doc.add_paragraph(f"Viktade nyckelord: {myWeightedKeywords}")   
 
-        ranking = rank_cvs_semantic_weighted(folder, job_desc, myWeightedKeywords)
+        ranking = rank_cvs_semantic_weighted(folder, job_desc, myWeightedKeywords, translateDoc, source_lang, target_lang)
         print("Rangordning av CV:n:")
         doc.add_paragraph("Rangordning av CV:n:")
         for filename, score in ranking:

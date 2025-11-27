@@ -32,6 +32,7 @@
             btnSave = new Button();
             btnCancel = new Button();
             saveFileDialog1 = new SaveFileDialog();
+            btnSaveAs = new Button();
             SuspendLayout();
             // 
             // txtDescription
@@ -45,8 +46,8 @@
             // 
             // btnSave
             // 
-            btnSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            btnSave.Location = new Point(593, 628);
+            btnSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnSave.Location = new Point(486, 628);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(75, 23);
             btnSave.TabIndex = 1;
@@ -56,6 +57,7 @@
             // 
             // btnCancel
             // 
+            btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnCancel.Location = new Point(12, 628);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(75, 23);
@@ -64,11 +66,23 @@
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
+            // btnSaveAs
+            // 
+            btnSaveAs.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnSaveAs.Location = new Point(576, 628);
+            btnSaveAs.Name = "btnSaveAs";
+            btnSaveAs.Size = new Size(75, 23);
+            btnSaveAs.TabIndex = 3;
+            btnSaveAs.Text = "Spara som";
+            btnSaveAs.UseVisualStyleBackColor = true;
+            btnSaveAs.Click += btnSaveAs_Click;
+            // 
             // EditDescForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(680, 663);
+            Controls.Add(btnSaveAs);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(txtDescription);
@@ -84,5 +98,6 @@
         private Button btnSave;
         private Button btnCancel;
         private SaveFileDialog saveFileDialog1;
+        private Button btnSaveAs;
     }
 }

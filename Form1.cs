@@ -30,6 +30,7 @@ namespace RangordnaCVs
         public Form1()
         {
             InitializeComponent();
+            this.Text = "Rangordna CVs v1.4.0";
             string exePath = AppContext.BaseDirectory;
 
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -189,12 +190,18 @@ namespace RangordnaCVs
         }
         private async void btnStartEvaluation_Click(object sender, EventArgs e)
         {
-            language = "sv";
-            if (cbLanuage.SelectedIndex >= 0)
+            if (!chBTranslateFiles.Checked)
             {
-                language = cbLanuage.Text;
+                language = "no";
             }
-
+            else
+            {
+                language = "sv";
+                if (cbLanuage.SelectedIndex >= 0)
+                {
+                    language = cbLanuage.Text;
+                }
+            }
             logFile = FixLogFile(deflogFile);
             if (!ValidateFiles())
             {
@@ -291,6 +298,7 @@ namespace RangordnaCVs
         private void btnEditDesc_Click(object sender, EventArgs e)
         {
             EditDescForm editDescForm = new EditDescForm();
+            editDescForm.Text = "Redigera arbetsbeskrivning";
             editDescForm.SetDescFile(jobdescFile);
             if (editDescForm.ShowDialog() == DialogResult.OK)
             {
@@ -302,6 +310,7 @@ namespace RangordnaCVs
         private void btnSetKeyword_Click(object sender, EventArgs e)
         {
             EditDescForm editDescForm = new EditDescForm();
+            editDescForm.Text = "Redigera nyckelord";
             editDescForm.SetDescFile(keywordFile);
             if (editDescForm.ShowDialog() == DialogResult.OK)
             {

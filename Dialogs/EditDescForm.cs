@@ -28,6 +28,17 @@ namespace RangordnaCVs.Dialogs
         {
             string descText = System.IO.File.ReadAllText(descriptionFile);
             txtDescription.Text = descText;
+            UnselectDescription();
+        }
+
+        // Add this inside the EditDescForm class
+        private void UnselectDescription()
+        {
+            // If txtDescription is a TextBox/TextBoxBase:
+            txtDescription.SelectionLength = 0;
+            // Place caret at end (optional)
+            txtDescription.SelectionStart = txtDescription.TextLength;
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -37,6 +48,20 @@ namespace RangordnaCVs.Dialogs
         }
 
         private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(descriptionFile))
+            {
+                this.DialogResult = DialogResult.OK;
+                string descText = txtDescription.Text;
+                System.IO.File.WriteAllText(descriptionFile, descText);
+                Close();
+            }
+            else
+            {
+                btnSaveAs_Click(sender, e);
+            }
+        }
+        private void btnSaveAs_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             string descText = txtDescription.Text;
@@ -51,17 +76,18 @@ namespace RangordnaCVs.Dialogs
             {
                 descriptionFile = saveFileDialog1.FileName;
                 System.IO.File.WriteAllText(descriptionFile, descText);
+                Close();
             }
             else
             {
                 this.DialogResult = DialogResult.Cancel;
             }
-            Close();
         }
 
         internal string GetDescFile()
         {
             return descriptionFile;
         }
+
     }
 }

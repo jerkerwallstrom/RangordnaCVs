@@ -47,6 +47,7 @@
             lblJobDescLang = new Label();
             btnSetKeyword = new Button();
             btnEditDesc = new Button();
+            chBTranslateFiles = new CheckBox();
             SuspendLayout();
             // 
             // lblKeyWord
@@ -148,7 +149,7 @@
             // 
             // btnStartEvaluation
             // 
-            btnStartEvaluation.Location = new Point(21, 365);
+            btnStartEvaluation.Location = new Point(21, 393);
             btnStartEvaluation.Margin = new Padding(4, 3, 4, 3);
             btnStartEvaluation.Name = "btnStartEvaluation";
             btnStartEvaluation.Size = new Size(194, 27);
@@ -167,7 +168,6 @@
             textBoxOutput.ScrollBars = ScrollBars.Both;
             textBoxOutput.Size = new Size(501, 522);
             textBoxOutput.TabIndex = 10;
-            textBoxOutput.TextAlign = HorizontalAlignment.Right;
             // 
             // lblPythonFile
             // 
@@ -181,7 +181,7 @@
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(21, 415);
+            progressBar1.Location = new Point(21, 435);
             progressBar1.Margin = new Padding(4, 3, 4, 3);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(190, 27);
@@ -191,7 +191,7 @@
             // 
             // btnClearOutput
             // 
-            btnClearOutput.Location = new Point(21, 460);
+            btnClearOutput.Location = new Point(21, 480);
             btnClearOutput.Margin = new Padding(4, 3, 4, 3);
             btnClearOutput.Name = "btnClearOutput";
             btnClearOutput.Size = new Size(99, 27);
@@ -204,7 +204,7 @@
             // 
             cbLanuage.FormattingEnabled = true;
             cbLanuage.Items.AddRange(new object[] { "sv", "en" });
-            cbLanuage.Location = new Point(177, 311);
+            cbLanuage.Location = new Point(177, 347);
             cbLanuage.Name = "cbLanuage";
             cbLanuage.Size = new Size(121, 23);
             cbLanuage.TabIndex = 14;
@@ -212,7 +212,7 @@
             // lblJobDescLang
             // 
             lblJobDescLang.AutoSize = true;
-            lblJobDescLang.Location = new Point(21, 314);
+            lblJobDescLang.Location = new Point(21, 350);
             lblJobDescLang.Name = "lblJobDescLang";
             lblJobDescLang.Size = new Size(54, 15);
             lblJobDescLang.TabIndex = 15;
@@ -238,11 +238,24 @@
             btnEditDesc.UseVisualStyleBackColor = true;
             btnEditDesc.Click += btnEditDesc_Click;
             // 
+            // chBTranslateFiles
+            // 
+            chBTranslateFiles.AutoSize = true;
+            chBTranslateFiles.Checked = true;
+            chBTranslateFiles.CheckState = CheckState.Checked;
+            chBTranslateFiles.Location = new Point(21, 328);
+            chBTranslateFiles.Name = "chBTranslateFiles";
+            chBTranslateFiles.Size = new Size(93, 19);
+            chBTranslateFiles.TabIndex = 18;
+            chBTranslateFiles.Text = "Översätt filer";
+            chBTranslateFiles.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(933, 562);
+            Controls.Add(chBTranslateFiles);
             Controls.Add(btnEditDesc);
             Controls.Add(btnSetKeyword);
             Controls.Add(lblJobDescLang);
@@ -292,6 +305,7 @@
         private Label lblJobDescLang;
         private Button btnSetKeyword;
         private Button btnEditDesc;
+        private CheckBox chBTranslateFiles;
     }
 }
 

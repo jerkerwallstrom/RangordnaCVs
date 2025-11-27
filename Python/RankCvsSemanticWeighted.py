@@ -38,7 +38,7 @@ def keyword_score(text, keywords):
     return score
 
 # ---- AI-baserad matchning med viktade nyckelord ----
-def rank_cvs_semantic_weighted(folder_path, job_description, weighted_keywords, alpha=0.7, beta=0.3):
+def rank_cvs_semantic_weighted(folder_path, job_description, weighted_keywords, translateDoc, source_lang='auto', target_lang='sv', alpha=0.7, beta=0.3):
     # Ladda modell
     model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
     
@@ -52,11 +52,8 @@ def rank_cvs_semantic_weighted(folder_path, job_description, weighted_keywords, 
     scores = {}
     for filename, text in cv_texts.items():
         if text.strip():
-            #if working_lnguage == "en":
-            #    target_lang = 'en'
-            #else:
-            #    target_lang = 'sv'
-            #text = translate_text(text, source_lang='auto', target_lang=target_lang)
+            if translateDoc:
+                text = translate_text(text, source_lang, target_lang)
             cv_embedding = model.encode(text, convert_to_tensor=True)
             similarity = util.cos_sim(job_embedding, cv_embedding).item()
             kw_score = keyword_score(text, weighted_keywords)
